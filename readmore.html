@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Admin | BOG COK</title>
+    
+    <!-- Modern Gaming Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* === 1. GLOBAL VARIABLES & RESET === */
+        :root {
+            --bg-dark: #0f111a;
+            --bg-card: #1a1d2d;
+            --gold: #d4af37;
+            --gold-hover: #f1c40f;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Poppins', sans-serif;
+            --header-height: 70px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: var(--header-height);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* === 2. NAVIGATION BAR (The Fixed Version) === */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: var(--header-height);
+            background: rgba(15, 17, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            z-index: 9999;
+        }
+
+        .nav-container {
+            max-width: 1200px; height: 100%; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center; padding: 0 20px;
+        }
+
+        .logo { font-family: var(--font-heading); font-size: 26px; font-weight: 800; color: #fff; letter-spacing: 2px; }
+        .logo span { color: var(--gold); }
+
+        /* Desktop Nav */
+        .nav-menu { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; align-items: center; }
+        .nav-item { position: relative; }
+        .nav-link { 
+            font-size: 14px; font-weight: 600; text-transform: uppercase; transition: color 0.3s; 
+            padding: 25px 10px; cursor: pointer; display: flex; align-items: center; gap: 5px;
+        }
+        .nav-link:hover { color: var(--gold); }
+        .arrow { font-size: 10px; transition: transform 0.3s; }
+
+        /* Desktop Dropdown */
+        .dropdown-menu {
+            position: absolute; top: 100%; left: 0; background: var(--bg-card); 
+            min-width: 200px; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 0 0 6px 6px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8); opacity: 0; visibility: hidden;
+            transform: translateY(10px); transition: all 0.3s ease;
+        }
+        @media (min-width: 769px) {
+            .nav-item:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+            .nav-item:hover .arrow { transform: rotate(180deg); }
+        }
+        .dropdown-menu a { display: block; padding: 12px 20px; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); transition: 0.2s; }
+        .dropdown-menu a:hover { background: rgba(212, 175, 55, 0.15); color: var(--gold); padding-left: 25px; }
+        
+        .mobile-toggle { display: none; font-size: 28px; cursor: pointer; color: var(--gold); }
+
+        /* === 3. READ MORE PROFILE SECTION === */
+        .profile-section {
+            flex: 1; /* Pushes footer down */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            background: linear-gradient(to bottom, rgba(15, 17, 26, 0.8), var(--bg-dark)), 
+                        url('images/outdoors-g6141dd86a_1920.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .profile-card {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(26, 29, 45, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(0,0,0,0.7);
+            position: relative;
+        }
+
+        /* Gold Quote Icon */
+        .quote-icon {
+            width: 60px;
+            height: 60px;
+            fill: var(--gold);
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        .profile-text {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .profile-signature h4 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .profile-signature span {
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Decorative lines */
+        .divider {
+            width: 100px;
+            height: 2px;
+            background: var(--gold);
+            margin: 30px auto;
+            opacity: 0.5;
+        }
+
+        /* === 4. FOOTER === */
+        footer { background: #080a10; border-top: 1px solid rgba(212, 175, 55, 0.2); padding: 50px 20px; text-align: center; margin-top: auto; }
+        .footer-logo { font-family: var(--font-heading); font-size: 24px; color: #fff; margin-bottom: 10px; }
+        .footer-logo span { color: var(--gold); }
+
+        /* === 5. MOBILE NAV CSS === */
+        @media (max-width: 768px) {
+            .mobile-toggle { display: block; }
+            .nav-menu { 
+                position: absolute; top: 100%; left: 0; width: 100%; 
+                background: var(--bg-dark); border-bottom: 1px solid var(--gold);
+                flex-direction: column; align-items: flex-start; padding: 0;
+                max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out;
+            }
+            .nav-menu.active { max-height: 100vh; overflow-y: auto; }
+            .nav-item { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            .nav-link { padding: 20px; width: 100%; justify-content: space-between; }
+            .dropdown-menu {
+                position: relative; top: 0; width: 100%; box-shadow: none; border: none;
+                background: rgba(0,0,0,0.3); max-height: 0; overflow: hidden;
+                opacity: 1; visibility: visible; transform: none; transition: max-height 0.3s ease;
+            }
+            .dropdown-menu.open { max-height: 500px; padding-bottom: 10px; }
+            .dropdown-menu a { padding-left: 40px; }
+            .nav-item.open .arrow { transform: rotate(180deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <div class="nav-container">
+            <div class="logo"><span>BOG</span> COK</div>
+            <div class="mobile-toggle" onclick="toggleNav()">☰</div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleSubmenu(this)">APK Download <span class="arrow">▼</span></div>
+                    <ul class="dropdown-menu">
+                        <li><a href="MEGA.html">MEGA</a></li>
+                        <li><a href="mediafire.html">MEDIAFIRE</a></li>
+                        <li><a href="googledrive.html">GoogleDrive</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleSubmenu(this)">Packages <span class="arrow">▼</span></div>
+                    <ul class="dropdown-menu">
+                        <li><a href="equipments.html">Equipments</a></li>
+                        <li><a href="dragonglass.html">Dragonglass</a></li>
+                        <li><a href="goldpackage.html">Gold Package</a></li>
+                        <li><a href="itempackage.html">Item Package</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleSubmenu(this)">Groups <span class="arrow">▼</span></div>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.facebook.com/messages/t/5594721483928536" target="_blank">Facebook</a></li>
+                        <li><a href="https://t.me/+SYiDFrUeGYA4Zjk1" target="_blank">Telegram</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ADMIN PROFILE SECTION -->
+    <section class="profile-section">
+        <div class="profile-card">
+            <!-- Quote SVG Icon -->
+            <svg class="quote-icon" viewBox="0 0 95.333 95.332">
+                <path d="M30.512,43.939c-2.348-0.676-4.696-1.019-6.98-1.019c-3.527,0-6.47,0.806-8.752,1.793c2.2-8.054,7.485-21.951,18.013-23.516c0.975-0.145,1.774-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045s-1.035-1.007-1.75-1.105c-0.777-0.106-1.569-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.433,32.076c-3.1,11.08-4.009,27.738,3.627,38.223c4.273,5.867,10.507,9,18.529,9.313c0.033,0.001,0.065,0.002,0.098,0.002c9.898,0,18.675-6.666,21.345-16.209c1.595-5.705,0.874-11.688-2.032-16.851C40.971,49.307,36.236,45.586,30.512,43.939z"></path>
+                <path d="M92.471,54.413c-2.875-5.106-7.61-8.827-13.334-10.474c-2.348-0.676-4.696-1.019-6.979-1.019c-3.527,0-6.471,0.806-8.753,1.793c2.2-8.054,7.485-21.951,18.014-23.516c0.975-0.145,1.773-0.85,2.04-1.799l2.301-8.23c0.194-0.696,0.079-1.441-0.318-2.045c-0.396-0.604-1.034-1.007-1.75-1.105c-0.776-0.106-1.568-0.16-2.354-0.16c-12.637,0-25.152,13.19-30.434,32.076c-3.099,11.08-4.008,27.738,3.629,38.225c4.272,5.866,10.507,9,18.528,9.312c0.033,0.001,0.065,0.002,0.099,0.002c9.897,0,18.675-6.666,21.345-16.209C96.098,65.559,95.376,59.575,92.471,54.413z"></path>
+            </svg>
+
+            <!-- Text Content -->
+            <p class="profile-text">
+                "I'm from Myanmar and I'm 27 years old. I have played the official Clash of Kings game for about six years. I'm crazy about Clash of Kings and had the idea to set up my own server. I hope it will be low-cost, although it might be a little tricky. Anyway, it won't be more than the official version."
+            </p>
+
+            <div class="divider"></div>
+
+            <div class="profile-signature">
+                <h4>BOG COK</h4>
+                <span>Admin / MOD</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo"><span>BOG</span> COK</div>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Premium Clash of Kings Myanmar Server</p>
+        <a href="https://www.facebook.com/bogcokmyanmarserver/" target="_blank" style="color: var(--gold); font-size: 14px; text-decoration: underline;">Follow us on Facebook</a>
+    </footer>
+
+    <!-- NAV SCRIPT -->
+    <script>
+        function toggleNav() {
+            document.getElementById("navMenu").classList.toggle("active");
+        }
+        function toggleSubmenu(element) {
+            if (window.innerWidth <= 768) {
+                const submenu = element.nextElementSibling;
+                const parentLi = element.parentElement;
+                submenu.classList.toggle("open");
+                parentLi.classList.toggle("open");
+            }
+        }
+    </script>
+
+</body>
+</html>

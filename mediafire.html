@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download MediaFire | BOG COK</title>
+    
+    <!-- Modern Gaming Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* === 1. UNIFORM THEME VARIABLES === */
+        :root { 
+            --bg-dark: #0f111a; 
+            --gold: #d4af37; 
+            --text-main: #e2e8f0; 
+            --bg-card: #1a1d2d; 
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Poppins', sans-serif;
+            --header-height: 70px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body { 
+            background-color: var(--bg-dark); 
+            color: var(--text-main); 
+            font-family: var(--font-body); 
+            padding-top: var(--header-height); /* Offset for fixed nav */
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* === 2. UNIFORM NAVBAR STYLES === */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: var(--header-height);
+            background: rgba(15, 17, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            z-index: 9999;
+        }
+
+        .nav-container {
+            max-width: 1200px; height: 100%; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center; padding: 0 20px;
+        }
+
+        .logo { font-family: var(--font-heading); font-size: 26px; font-weight: 800; color: #fff; letter-spacing: 2px; }
+        .logo span { color: var(--gold); }
+
+        /* Desktop Nav */
+        .nav-menu { display: flex; gap: 20px; list-style: none; align-items: center; }
+        .nav-item { position: relative; }
+        .nav-link { 
+            font-size: 14px; font-weight: 600; text-transform: uppercase; 
+            transition: color 0.3s; padding: 25px 10px; cursor: pointer; 
+            display: flex; align-items: center; gap: 5px;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--gold); }
+        .arrow { font-size: 10px; transition: transform 0.3s; }
+
+        /* Dropdown Menus */
+        .dropdown-menu {
+            position: absolute; top: 100%; left: 0;
+            background: var(--bg-card); min-width: 200px;
+            border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 0 0 6px 6px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease;
+        }
+
+        @media (min-width: 769px) {
+            .nav-item:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+            .nav-item:hover .arrow { transform: rotate(180deg); }
+        }
+
+        .dropdown-menu a { 
+            display: block; padding: 12px 20px; font-size: 13px; 
+            border-bottom: 1px solid rgba(255,255,255,0.05); color: #94a3b8;
+        }
+        .dropdown-menu a:hover, .dropdown-menu a.active { background: rgba(212, 175, 55, 0.15); color: var(--gold); padding-left: 25px; }
+
+        /* Mobile Toggle */
+        .mobile-toggle { display: none; font-size: 28px; cursor: pointer; color: var(--gold); }
+
+        /* === 3. DOWNLOAD PAGE CONTENT === */
+        .download-page { min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 40px; }
+        
+        .card { 
+            background: var(--bg-card); padding: 50px; border-radius: 20px; text-align: center; 
+            border: 1px solid rgba(212, 175, 55, 0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            max-width: 500px; width: 100%;
+        }
+        .card h2 { font-family: var(--font-heading); color: #fff; margin-bottom: 30px; }
+        
+        .mf-logo { width: 150px; margin-bottom: 30px; filter: drop-shadow(0 0 10px rgba(70, 160, 240, 0.3)); }
+        
+        .btn-download {
+            display: block; background: #46a0f0; color: #fff; padding: 18px; 
+            font-weight: bold; border-radius: 50px; text-transform: uppercase;
+            transition: 0.3s; box-shadow: 0 0 20px rgba(70, 160, 240, 0.4);
+        }
+        .btn-download:hover { background: #fff; color: #46a0f0; transform: translateY(-5px); box-shadow: 0 5px 25px rgba(255,255,255,0.2); }
+
+        footer { text-align: center; padding: 30px; font-size: 14px; color: #94a3b8; border-top: 1px solid #222; }
+
+        /* === 4. MOBILE RESPONSIVE NAV === */
+        @media (max-width: 768px) {
+            .mobile-toggle { display: block; }
+            .nav-menu { 
+                position: absolute; top: 100%; left: 0; width: 100%; 
+                background: var(--bg-dark); border-bottom: 1px solid var(--gold);
+                flex-direction: column; align-items: flex-start; padding: 0;
+                max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out;
+            }
+            .nav-menu.active { max-height: 100vh; overflow-y: auto; }
+            .nav-item { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            .nav-link { padding: 20px; width: 100%; justify-content: space-between; }
+            
+            .dropdown-menu {
+                position: relative; top: 0; width: 100%; box-shadow: none; border: none;
+                background: rgba(0,0,0,0.3); max-height: 0; overflow: hidden;
+                opacity: 1; visibility: visible; transform: none; transition: max-height 0.3s ease;
+            }
+            .dropdown-menu.open { max-height: 500px; padding-bottom: 10px; }
+            .dropdown-menu a { padding-left: 40px; }
+            .nav-item.open .arrow { transform: rotate(180deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- UNIFORM NAVBAR -->
+    <header>
+        <div class="nav-container">
+            <div class="logo"><span>BOG</span> COK</div>
+            <div class="mobile-toggle" onclick="toggleNav()">☰</div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                
+                <li class="nav-item">
+                    <div class="nav-link active" onclick="toggleSubmenu(this)">APK Download <span class="arrow">▼</span></div>
+                    <ul class="dropdown-menu">
+                        <li><a href="MEGA.html">MEGA</a></li>
+                        <li><a href="mediafire.html" class="active">MEDIAFIRE</a></li>
+                        <li><a href="googledrive.html">GoogleDrive</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleSubmenu(this)">Packages <span class="arrow">▼</span></div>
+                    <ul class="dropdown-menu">
+                        <li><a href="equipments.html">Equipment</a></li>
+                        <li><a href="dragonglass.html">Dragonglass</a></li>
+                        <li><a href="goldpackage.html">Gold Package</a></li>
+                        <li><a href="itempackage.html">Item Package</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleSubmenu(this)">Groups <span class="arrow">▼</span></div>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.facebook.com/messages/t/5594721483928536" target="_blank">Facebook</a></li>
+                        <li><a href="https://t.me/+SYiDFrUeGYA4Zjk1" target="_blank">Telegram</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- DOWNLOAD CONTENT -->
+    <main class="download-page">
+        <div class="card">
+            <h2>Ready to Download?</h2>
+            <img src="images/mf-flame-blue.png" alt="MediaFire" class="mf-logo" onerror="this.src='https://www.mediafire.com/images/branding/mf-logo-2015.png'">
+            
+            <a href="https://www.mediafire.com/folder/tjpxqytrikhgt/BOGCOK" target="_blank" class="btn-download">
+                Download Now
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 BOG COK Clash of Kings Myanmar Server</p>
+    </footer>
+
+    <!-- JS FOR UNIFORM NAV -->
+    <script>
+        function toggleNav() {
+            document.getElementById("navMenu").classList.toggle("active");
+        }
+        function toggleSubmenu(element) {
+            if (window.innerWidth <= 768) {
+                const submenu = element.nextElementSibling;
+                const parentLi = element.parentElement;
+                submenu.classList.toggle("open");
+                parentLi.classList.toggle("open");
+            }
+        }
+    </script>
+
+</body>
+</html>

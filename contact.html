@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - BOG COK</title>
+    
+    <!-- Fonts for New Nav (Cinzel/Poppins) & Content (Roboto) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Poppins:wght@300;400;600&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Modern Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* =========================================
+           1. NEW NAVBAR STYLES (BOG THEME)
+           ========================================= */
+        :root {
+            --bg-dark: #0f111a;
+            --bg-card-nav: #1a1d2d;
+            --gold: #d4af37;
+            --text-nav: #e2e8f0;
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Poppins', sans-serif;
+            --header-height: 70px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #f4f7f6; /* Your original page background */
+            font-family: 'Roboto', sans-serif; /* Your original content font */
+            padding-top: var(--header-height); /* push content down */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* HEADER FIXED */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: var(--header-height);
+            background: rgba(15, 17, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            z-index: 9999;
+        }
+
+        .nav-container {
+            max-width: 1200px; height: 100%; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center; padding: 0 20px;
+        }
+
+        .logo { font-family: var(--font-heading); font-size: 26px; font-weight: 800; color: #fff; letter-spacing: 2px; }
+        .logo span { color: var(--gold); }
+
+        /* DESKTOP NAV */
+        .nav-menu { display: flex; gap: 20px; align-items: center; }
+        .nav-item { position: relative; }
+        
+        .nav-link { 
+            font-family: var(--font-body);
+            font-size: 14px; font-weight: 600; text-transform: uppercase; 
+            color: var(--text-nav); transition: color 0.3s; 
+            padding: 25px 10px; cursor: pointer; display: flex; align-items: center; gap: 5px;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--gold); }
+        .arrow { font-size: 10px; transition: transform 0.3s; }
+
+        /* DESKTOP DROPDOWN */
+        .dropdown-menu {
+            position: absolute; top: 100%; left: 0; 
+            background: var(--bg-card-nav); 
+            min-width: 200px; 
+            border: 1px solid rgba(212, 175, 55, 0.3); 
+            border-radius: 0 0 6px 6px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8); 
+            opacity: 0; visibility: hidden;
+            transform: translateY(10px); transition: all 0.3s ease;
+        }
+        
+        @media (min-width: 993px) {
+            .nav-item:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+            .nav-item:hover .arrow { transform: rotate(180deg); }
+        }
+        
+        .dropdown-menu a { 
+            display: block; padding: 12px 20px; font-size: 13px; 
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            color: #94a3b8; font-family: var(--font-body);
+        }
+        .dropdown-menu a:hover { background: rgba(212, 175, 55, 0.15); color: var(--gold); padding-left: 25px; }
+
+        /* MOBILE TOGGLE */
+        .mobile-toggle { display: none; font-size: 28px; cursor: pointer; color: var(--gold); }
+
+        /* MOBILE MENU STYLES */
+        @media (max-width: 992px) {
+            .mobile-toggle { display: block; }
+            
+            .nav-menu { 
+                position: absolute; top: 100%; left: 0; width: 100%; 
+                background: var(--bg-dark); border-bottom: 1px solid var(--gold);
+                flex-direction: column; align-items: flex-start; padding: 0;
+                max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out;
+            }
+            .nav-menu.active { max-height: 100vh; overflow-y: auto; }
+            .nav-item { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            .nav-link { padding: 20px; width: 100%; justify-content: space-between; }
+            
+            .dropdown-menu {
+                position: relative; top: 0; width: 100%; box-shadow: none; border: none;
+                background: rgba(0,0,0,0.3); max-height: 0; overflow: hidden;
+                opacity: 1; visibility: visible; transform: none; transition: max-height 0.3s ease;
+            }
+            .dropdown-menu.open { max-height: 500px; padding-bottom: 10px; }
+            .dropdown-menu a { padding-left: 40px; }
+            .nav-item.open .arrow { transform: rotate(180deg); }
+        }
+
+        /* =========================================
+           2. ORIGINAL CONTACT PAGE STYLES
+           ========================================= */
+        .contact-section {
+            flex: 1;
+            padding: 50px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .contact-header h1 {
+            font-size: 36px;
+            font-weight: 900;
+            color: #2c3e50;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-header p {
+            font-size: 16px;
+            color: #7f8c8d;
+            font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .contact-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 35px 20px;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #eee;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: transparent;
+        }
+
+        .contact-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: scale(1.15);
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 900;
+            color: #2c3e50;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .card-subtitle {
+            font-size: 14px;
+            color: #7f8c8d;
+            font-weight: 500;
+            background: #f1f2f6;
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        /* Brand Specific Colors */
+        .whatsapp { border-bottom: 5px solid #25D366; }
+        .whatsapp .contact-icon { color: #25D366; }
+        .whatsapp:hover { background: linear-gradient(to bottom, #ffffff, #f0fff4); }
+
+        .messenger { border-bottom: 5px solid #0084FF; }
+        .messenger .contact-icon { color: #0084FF; }
+        .messenger:hover { background: linear-gradient(to bottom, #ffffff, #f0f7ff); }
+
+        .telegram { border-bottom: 5px solid #0088cc; }
+        .telegram .contact-icon { color: #0088cc; }
+        .telegram:hover { background: linear-gradient(to bottom, #ffffff, #f0faff); }
+
+        .viber { border-bottom: 5px solid #7360f2; }
+        .viber .contact-icon { color: #7360f2; }
+        .viber:hover { background: linear-gradient(to bottom, #ffffff, #f4f0ff); }
+
+        .facebook { border-bottom: 5px solid #1877F2; }
+        .facebook .contact-icon { color: #1877F2; }
+        .facebook:hover { background: linear-gradient(to bottom, #ffffff, #f0f4ff); }
+
+        /* Footer */
+        .footer {
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        .footer a {
+            color: #f39c12;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover { color: #f1c40f; }
+    </style>
+</head>
+<body>
+
+    <!-- =========================================
+         NEW UNIFORM NAVBAR
+         ========================================= -->
+    <header>
+        <div class="nav-container">
+            <div class="logo"><span>BOG</span> COK</div>
+            <div class="mobile-toggle" onclick="toggleNav()">☰</div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleSubmenu(this)">APK Download <span class="arrow">▼</span></div>
+                    <ul class="dropdown-menu">
+                        <li><a href="MEGA.html">MEGA</a></li>
+                        <li><a href="mediafire.html">MEDIAFIRE</a></li>
+                        <li><a href="googledrive.html">GoogleDrive</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleSubmenu(this)">Packages <span class="arrow">▼</span></div>
+                    <ul class="dropdown-menu">
+                        <li><a href="equipments.html">Equipment</a></li>
+                        <li><a href="dragonglass.html">Dragonglass</a></li>
+                        <li><a href="goldpackage.html">Gold Package</a></li>
+                        <li><a href="itempackage.html">Item Package</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleSubmenu(this)">Groups <span class="arrow">▼</span></div>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.facebook.com/messages/t/5594721483928536" target="_blank">Facebook</a></li>
+                        <li><a href="https://t.me/+SYiDFrUeGYA4Zjk1" target="_blank">Telegram</a></li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link active">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Contact Section -->
+    <section class="contact-section">
+        
+        <div class="contact-header">
+            <h1>Get In Touch</h1>
+            <p>Need help with a package or want to join our community? Click any of the icons below to reach out to our Admin team or join our Official Groups.</p>
+        </div>
+
+        <div class="contact-grid">
+            
+            <a href="https://wa.me/959456459010" target="_blank" class="contact-card whatsapp">
+                <i class="fa-brands fa-whatsapp contact-icon"></i>
+                <div class="card-title">WhatsApp</div>
+                <div class="card-subtitle">Direct Admin Chat</div>
+            </a>
+
+            <a href="viber://add?number=959456459010" target="_blank" class="contact-card viber">
+                <i class="fa-brands fa-viber contact-icon"></i>
+                <div class="card-title">Viber</div>
+                <div class="card-subtitle">Direct Admin Chat</div>
+            </a>
+
+            <a href="https://t.me/soelin" target="_blank" class="contact-card telegram">
+                <i class="fa-solid fa-user-shield contact-icon"></i>
+                <div class="card-title">Telegram Admin</div>
+                <div class="card-subtitle">Chat with @soelin</div>
+            </a>
+
+            <a href="https://www.facebook.com/messages/t/101645122632807" target="_blank" class="contact-card messenger">
+                <i class="fa-brands fa-facebook-messenger contact-icon"></i>
+                <div class="card-title">Messenger</div>
+                <div class="card-subtitle">Page Inbox Support</div>
+            </a>
+
+            <a href="https://t.me/+SYiDFrUeGYA4Zjk1" target="_blank" class="contact-card telegram">
+                <i class="fa-brands fa-telegram contact-icon"></i>
+                <div class="card-title">Telegram Group</div>
+                <div class="card-subtitle">Join Our Community</div>
+            </a>
+
+            <a href="https://www.facebook.com/bogcokmyanmarserver/" target="_blank" class="contact-card facebook">
+                <i class="fa-brands fa-facebook contact-icon"></i>
+                <div class="card-title">Facebook Page</div>
+                <div class="card-subtitle">Follow for Updates</div>
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- Modern Footer -->
+    <footer class="footer">
+        <p><a href="https://www.facebook.com/bogcokmyanmarserver/" target="_blank">BOGCOK Clash of Kings Myanmar Server</a></p>
+    </footer>
+
+    <!-- JavaScript for Uniform Nav -->
+    <script>
+        function toggleNav() {
+            document.getElementById("navMenu").classList.toggle("active");
+        }
+        function toggleSubmenu(element) {
+            if (window.innerWidth <= 992) {
+                const submenu = element.nextElementSibling;
+                const parentLi = element.parentElement;
+                submenu.classList.toggle("open");
+                parentLi.classList.toggle("open");
+            }
+        }
+    </script>
+</body>
+</html>
